@@ -6,21 +6,51 @@ body {
 }
  .grid-container {
     display: grid;
-    grid-template-columns: repeat(8, 1fr);
     width: 500px;
     height: 500px;
     margin: auto;
 }
+
 
 .item {
     background-color: white;
     font-size: 18px;
     border: 1px solid black;
     cursor: pointer;
-    
   } 
 
   .red {
     background-color: red;
     pointer-events: none;
   }
+  .search {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 2rem;
+  }
+
+  input {
+    padding: 10px;
+    font-size: 16px;
+    text-align: center;
+  }
+
+  button {
+    padding: 10x;
+    font-size: 16px;
+    margin-left: 10px;
+    cursor: pointer;
+    background-color: black;
+    color: white;
+}
+h2 {
+  position: absolute;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  justify-content: center;
+  height: 20vh;
+  margin-right: 8rem;
+  font-size: 2rem;
+}

@@ -1,60 +1,72 @@
+const createbutton = document.getElementById('btn');
+const gridSize = document.getElementById('size');
 const gridContainer = document.querySelector('.grid-container');
+//gridContainer.style.gridTemplateColumns = repeat(4, 1fr);
 
-for(let i = 0; i < 64; i++){
+createbutton.addEventListener('click', () => {
+    //alert(prompt("enter number of rows and columns"))
+    const size = Number(gridSize.value);
+    createGrid(size);
+})
+
+function createGrid(size) {
+    gridContainer.innerHTML = '';
+    gridContainer.style.gridTemplateColumns = `repeat(${size}, 1fr)`;
+
+for(let i = 0; i < size * size; i++){
     const div = document.createElement('div');
     div.className = 'item';
     gridContainer.appendChild(div);
 }
+
 const items = document.querySelectorAll('.item');
 items.forEach((item, index) => {
     item.addEventListener('click',() => {
-       const rowInd = Math.floor(index / 8);
-       const colInd = index % 8;
+       const rowInd = Math.floor(index / size);
+       const colInd = index % size;
 
-       for (let i = rowInd * 8; i < (rowInd * 8) + 8; i++){
+       for (let i = rowInd * size; i < (rowInd * size) + size; i++){
         items[i].style.backgroundColor = 'red';
         items[i].classList.add('red');  
        }
 
 
-       for (let i = colInd; i < items.length; i += 8){
+       for (let i = colInd; i < items.length; i += size){
         items[i].style.backgroundColor = 'red';
         items[i].classList.add('red');  
        }
 
-       for (let i = index; i < items.length; i += 9) {
-        if (Math.floor(i / 8) - rowInd === (i % 8) - colInd) {
+       for (let i = index; i < items.length; i += size+1) {
+        if (Math.floor(i / size) - rowInd === (i % size) - colInd) {
             items[i].style.backgroundColor = 'red';
             items[i].classList.add('red');
         }
-    }
-       for (let i = index; i >= 0; i -= 9) {
-        if (Math.floor(i / 8) - rowInd === (i % 8) - colInd) {
+        }
+
+       for (let i = index; i >= 0; i -= size+1) {
+        if (Math.floor(i / size) - rowInd === (i % size) - colInd) {
             items[i].style.backgroundColor = 'red';
             items[i].classList.add('red');
         }
-    }
-    for (let i = index; i < items.length; i += 7) {
-        if (Math.floor(i / 8) - rowInd === colInd - (i % 8)) {
-            items[i].style.backgroundColor = 'red';
-            items[i].classList.add('red');
         }
-    }
-    for (let i = index; i >= 0; i -= 7) {
-        if (Math.floor(i / 8) - rowInd === colInd - (i % 8)) {
-            items[i].style.backgroundColor = 'red';
-            items[i].classList.add('red');
+
+        for (let i = index; i < items.length; i += size-1) {
+            if (Math.floor(i / size) - rowInd === colInd - (i % size)) {
+                items[i].style.backgroundColor = 'red';
+                items[i].classList.add('red');
+            }
         }
-    }
+        for (let i = index; i >= 0; i -= size-1) {
+            if (Math.floor(i / size) - rowInd === colInd - (i % size)) {
+                items[i].style.backgroundColor = 'red';
+                items[i].classList.add('red');
+            }
+        }
         item.style.backgroundColor = 'blue';
         item.classList.add('blue');
     })
 })
-
-
-
-
-
+}
 
 //  items.forEach((item, index) => {
 //      item.addEventListener('click',() => {
@@ -107,6 +119,32 @@ items.forEach((item, index) => {
 //     })
 // })
 
+/*for(let i = 0; i < 64; i++){
+    const div = document.createElement('div');
+    div.className = 'item';
+    gridContainer.appendChild(div);
+}
+const items = document.querySelectorAll('.item');
+items.forEach((item, index) => {
+    item.addEventListener('click',() => {
+       const rowInd = Math.floor(index / 8);
+       const colInd = index % 8;
+
+       for (let i = rowInd * 8; i < (rowInd * 8) + 8; i++){
+        items[i].style.backgroundColor = 'red';
+        items[i].classList.add('red');  
+       }
+
+
+       for (let i = colInd; i < items.length; i += 8){
+        items[i].style.backgroundColor = 'red';
+        items[i].classList.add('red');  
+       }
+
+        item.style.backgroundColor = 'blue';
+        item.classList.add('blue');
+    })
+})*/
 
 
 
