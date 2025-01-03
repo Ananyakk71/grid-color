@@ -1,0 +1,26 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+ .grid-container {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    width: 500px;
+    height: 500px;
+    margin: auto;
+}
+
+.item {
+    background-color: white;
+    font-size: 18px;
+    border: 1px solid black;
+    cursor: pointer;
+    
+  } 
+
+  .red {
+    background-color: red;
+    pointer-events: none;
+  }
