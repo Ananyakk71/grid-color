@@ -11,12 +11,14 @@ createbutton.addEventListener('click', () => {
 
 function createGrid(size) {
     gridContainer.innerHTML = '';
+    // gridContainer.style.gridTemplateColumns = repeat(8, 1fr);
     gridContainer.style.gridTemplateColumns = `repeat(${size}, 1fr)`;
 
 for(let i = 0; i < size * size; i++){
     const div = document.createElement('div');
     div.className = 'item';
     gridContainer.appendChild(div);
+
 }
 
 const items = document.querySelectorAll('.item');
@@ -24,13 +26,13 @@ items.forEach((item, index) => {
     item.addEventListener('click',() => {
        const rowInd = Math.floor(index / size);
        const colInd = index % size;
-
+       //row
        for (let i = rowInd * size; i < (rowInd * size) + size; i++){
         items[i].style.backgroundColor = 'red';
         items[i].classList.add('red');  
        }
 
-
+       //col
        for (let i = colInd; i < items.length; i += size){
         items[i].style.backgroundColor = 'red';
         items[i].classList.add('red');  
